@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="leddartech-common", # Replace with your own username
-    version="0.0.2",
+    version="0.0.1",
     author="Leddartech",
     description="Leddartech's common utilities",
     long_description=long_description,
@@ -16,5 +16,5 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=3.6',
+    python_requires='=3.6',
 )
