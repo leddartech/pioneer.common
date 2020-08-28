@@ -1,7 +1,9 @@
+
 build-package:
   stage: deploy
   image: python:3.6
   script:
+    - export REQUESTS_CA_BUNDLE="/etc/ssl/certs/ca-certificates.crt
     - cat $PYPIRC > /tmp/.pypirc
     - pip install twine
     - python setup.py bdist_wheel
