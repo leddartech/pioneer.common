@@ -1,7 +1,7 @@
 
 build-package:
   stage: deploy
-  image: python:3.6
+  image: registry.svleddar-gitlab.leddartech.local/devopsadmin/common_docker_images/gcc-cmake-py3:v1.1
   script:
     - export REQUESTS_CA_BUNDLE="/etc/ssl/certs/ca-certificates.crt"
     - cat $PYPIRC > /tmp/.pypirc
