@@ -1,7 +1,8 @@
-import cv2
+from leddartech.common import linalg
+
 from enum import Enum
 
-import linalg
+import cv2
 import numpy as np
 
 class Pos(Enum):
