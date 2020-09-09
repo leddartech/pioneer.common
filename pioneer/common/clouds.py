@@ -1,5 +1,6 @@
 
-from . import plane, linalg
+from leddartech.common import plane, linalg
+from leddartech.common.logging_manager import LoggingManager
 
 from numpy.matlib import repmat
 
@@ -7,7 +8,6 @@ import math
 import numpy as np
 import os
 import transforms3d
-import warnings
 
 def grid(v, h, v_from, v_to, h_from, h_to, dtype = np.float32):
     '''
@@ -238,7 +238,7 @@ def directions_orthogonal(v,h=None,v_fov=None,h_fov=None, dtype = np.float32):
         v, h, v_fov, h_fov = from_specs_dict(v)
 
     if h_fov > 90:
-        warnings.warn("The projection model is not adapted for horizontal fov greater than 90 degrees. Trying to correct the" \
+        LoggingManager.instance().warning("The projection model is not adapted for horizontal fov greater than 90 degrees. Trying to correct the" \
                      +" situation by spliting the fov in three parts and re-merging them. Use 'projection: direction_carla_pixell' instead.")
         return directions_orthogonal_pixell(v=v, h=h, v_fov=v_fov, h_fov=h_fov, dtype=dtype)
 

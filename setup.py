@@ -4,10 +4,10 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="leddartech_common", # Replace with your own username
+    name="pioneer_common", # Replace with your own username
     version="0.0.1",
     author="Leddartech",
-    description="Leddartech's common utilities",
+    description="Pioneer team common utilities",
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=setuptools.find_packages(),

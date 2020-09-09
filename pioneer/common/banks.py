@@ -1,4 +1,5 @@
 from leddartech.common import clouds, plane
+from leddartech.common.logging_manager import LoggingManager
 
 import ctypes
 import numpy as np
@@ -6,7 +7,6 @@ import os
 import pickle
 import platform
 import traceback
-import warnings
 
 def get_bank_offsets(v, h):
     '''
@@ -218,7 +218,7 @@ def get_sampling_ordering_flat(v, h):
             fMATH_CopyMapMem2Trc(v*h, ordered_to_sampled_inv, False)
             _ordering_cache[(v,h)] = (ordered_to_sampled, sampled_to_ordered, ordered_to_sampled_inv, sampled_to_ordered_inv)
         else:
-            warnings.warn("Unsupported v resolution")
+            LoggingManager.instance().warning("Unsupported v resolution")
             return None, None
     
     return _ordering_cache[(v,h)]

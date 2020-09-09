@@ -151,7 +151,7 @@ class CylindricalProjection():
         self.images_max_x[Pos.CENTER] = self.keeped_cylinder_points_2d[Pos.CENTER][0,self.keeped_cylinder_points_2d[Pos.CENTER].reshape(2,-1)[1,:]==self.image_height//2].max()
 
         # left camera
-        calib_extrinsic_l_c_inv = leddar_utils.linalg.tf_inv(self.extrinsic_calibrations[Pos.LEFT])
+        calib_extrinsic_l_c_inv = linalg.tf_inv(self.extrinsic_calibrations[Pos.LEFT])
         pt_in_cam_3 = self.new_matrices[Pos.LEFT] @ (calib_extrinsic_l_c_inv @ self.cylinder_points)[:3,:]
         pt_in_cam_3d = (calib_extrinsic_l_c_inv @ self.cylinder_points)[:3,:]
         pt_in_cam = (cv2.projectPoints(pt_in_cam_3d,np.zeros((3, 1)),np.zeros((3, 1)), self.new_matrices[Pos.LEFT], self.distortion_coefficients[Pos.LEFT]*0.0))[0].reshape(-1,2).T
@@ -162,7 +162,7 @@ class CylindricalProjection():
         self.images_max_x[Pos.LEFT] = self.keeped_cylinder_points_2d[Pos.LEFT][0,self.keeped_cylinder_points_2d[Pos.LEFT].reshape(2,-1)[1,:]==self.image_height//2].max()
 
         # right camera
-        calib_extrinsic_r_c_inv = leddar_utils.linalg.tf_inv(self.extrinsic_calibrations[Pos.RIGHT])
+        calib_extrinsic_r_c_inv = linalg.tf_inv(self.extrinsic_calibrations[Pos.RIGHT])
         pt_in_cam_3 = self.new_matrices[Pos.RIGHT] @ (calib_extrinsic_r_c_inv @ self.cylinder_points)[:3,:]
         pt_in_cam_3d = (calib_extrinsic_r_c_inv @ self.cylinder_points)[:3,:]
         pt_in_cam = (cv2.projectPoints(pt_in_cam_3d,np.zeros((3, 1)),np.zeros((3, 1)), self.new_matrices[Pos.RIGHT], self.distortion_coefficients[Pos.RIGHT]*0.0))[0].reshape(-1,2).T
