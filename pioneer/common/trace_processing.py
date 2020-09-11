@@ -1,5 +1,5 @@
-from leddartech.common.linalg import fit_cubic
-from leddartech.common.types.calibration import SaturationCalibration
+from pioneer.common.linalg import fit_cubic
+from pioneer.common.types.calibration import SaturationCalibration
 
 from enum import Enum
 from scipy.signal import convolve2d

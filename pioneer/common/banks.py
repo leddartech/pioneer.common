@@ -1,5 +1,5 @@
-from leddartech.common import clouds, plane
-from leddartech.common.logging_manager import LoggingManager
+from pioneer.common import clouds, plane
+from pioneer.common.logging_manager import LoggingManager
 
 import ctypes
 import numpy as np

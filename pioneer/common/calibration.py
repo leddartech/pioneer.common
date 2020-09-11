@@ -1,6 +1,6 @@
-from leddartech.common.logging_manager import LoggingManager
-from leddartech.common import clouds, plane, banks, images
-from leddartech.common import interpolator as Ir
+from pioneer.common.logging_manager import LoggingManager
+from pioneer.common import clouds, plane, banks, images
+from pioneer.common import interpolator as Ir
 
 try:
     import leddar

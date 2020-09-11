@@ -1,4 +1,4 @@
-from leddartech.common.logging_manager import LoggingManager
+from pioneer.common.logging_manager import LoggingManager
 
 from matplotlib import pyplot as plt
 

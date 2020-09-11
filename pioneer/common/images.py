@@ -1,4 +1,4 @@
-from leddartech.common import interpolator as Ir
+from pioneer.common import interpolator as Ir
 
 from matplotlib import cm, colors
 import numpy as np

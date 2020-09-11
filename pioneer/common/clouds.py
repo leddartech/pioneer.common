@@ -1,6 +1,6 @@
 
-from leddartech.common import plane, linalg
-from leddartech.common.logging_manager import LoggingManager
+from pioneer.common import plane, linalg
+from pioneer.common.logging_manager import LoggingManager
 
 from numpy.matlib import repmat
 
