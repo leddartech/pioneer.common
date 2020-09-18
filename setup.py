@@ -8,8 +8,6 @@ setuptools.setup(
     version="0.0.1",
     author="Leddartech",
     description="Pioneer team common utilities",
-    long_description=long_description,
-    long_description_content_type="text/markdown",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
@@ -17,4 +15,5 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.6',
+    include_package_data=True
 )

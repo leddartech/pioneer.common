@@ -1,4 +1,4 @@
-Metadata-Version: 2.1
+Metadata-Version: 1.2
 Name: pioneer-common
 Version: 0.0.1
 Summary: Pioneer team common utilities
@@ -11,4 +11,3 @@ Classifier: Programming Language :: Python :: 3
 Classifier: License :: OSI Approved :: MIT License
 Classifier: Operating System :: OS Independent
 Requires-Python: >=3.6
-Description-Content-Type: text/markdown
