@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="pioneer_common", # Replace with your own username
-    version="0.0.1",
+    version="0.1.0",
     author="Leddartech",
     description="Pioneer team common utilities",
     packages=setuptools.find_packages(),
@@ -13,6 +13,16 @@ setuptools.setup(
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
+    ],
+    install_requires=[
+        'numpy',
+        'matplotlib',
+        'future',
+        'transforms3d',
+        'scipy',
+        'shapely',
+        'sk-video',
+        'ruamel'
     ],
     python_requires='>=3.6'
 )

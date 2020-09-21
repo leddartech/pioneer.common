@@ -1,0 +1,24 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[[source]]
+name = "gitlab"
+url = "https://__token__:YysPpzD4V4qaY1y75Uv1@svleddar-gitlab.leddartech.local/api/v4/projects/487/packages/pypi/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+numpy = "*"
+future = "*"
+matplotlib = "*"
+transforms3d = "*"
+scipy = "*"
+shapely = "*"
+sk-video = "*"
+"ruamel.std.zipfile" = "*"
+
+[requires]
+python_version = "3.6"
