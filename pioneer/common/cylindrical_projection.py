@@ -67,14 +67,16 @@ class CylindricalProjection():
             self.images_max_x[pos] = None
             self.masks[pos] = None
 
-    def project_pts(self, pts, output_mask = None):
+    def project_pts(self, pts, mask_fov=False, output_mask=False):
         ''' project 3D in the 2D cylindrical referiencial
 
             Args:
                 pts_3D: 3D point in the center camera referential (3xN)
+                mask_fov (optionnal): removes points outside the fov
+                output_mask (optionnal): if True, returns the mask applied to the points
             Return:
                 2xN: 2D points in cylindrical image referential
-                keep: boolean array of point in the cylinder FOV
+                mask (optionnal): returned if output_mask is True
         '''
         assert len(pts.shape)==2, '2 dimensionals array needed'
         assert pts.shape[0]==3, '3d points format 3xN'
@@ -88,12 +90,17 @@ class CylindricalProjection():
 
         pts = np.column_stack((x,y))
 
-        if output_mask is not None:
-            output_mask[:] = output_mask & (azimut>-self.FOV_width/2) & \
+        mask = (pts[2,:] > 0)
+        if mask_fov or output_mask:
+            mask = (azimut>-self.FOV_width/2) & \
                    (azimut<self.FOV_width/2) & \
                    (elevation>-self.FOV_height/2) & \
                    (elevation<self.FOV_height/2)
+        if mask_fov:
+            pts = pts[mask]
 
+        if output_mask:
+            return pts, mask
         return pts
 
     def stitch(self, images=None):

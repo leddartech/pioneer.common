@@ -79,7 +79,7 @@ class VideoRecorder(object):
             else:
                 l = len(platform[datasource])
                 a = platform[datasource][l//2]
-                b = platform[context.ds][l//2 + 1]
+                b = platform[datasource][l//2 + 1]
                 hz = 1e6/(b.timestamp-a.timestamp) #timestamps in us
             
             if hz < 1 or hz > 100:
