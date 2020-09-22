@@ -8,7 +8,7 @@ setuptools.setup(
     version="0.1.0",
     author="Leddartech",
     description="Pioneer team common utilities",
-    packages=setuptools.find_packages(),
+    packages=['pioneer', 'pioneer.common'],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
