@@ -22,7 +22,7 @@ setuptools.setup(
         'scipy',
         'shapely',
         'sk-video',
-        'ruamel'
+        'ruamel.std.zipfile'
     ],
     python_requires='>=3.6'
 )
