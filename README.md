@@ -8,17 +8,17 @@ Before installing, you should add to your pip.conf file the gitlab pypi server u
 
 ```conf
 [global]
-extra-index-url = https://__token__:qcnZ-LPju8cqtpG1cpss@svleddar-gitlab.leddartech.local/api/v4/projects/481/packages/pypi/simple
+extra-index-url = https://pioneer:yK6RUkhUCNHg3e1yxGT4@svleddar-gitlab.leddartech.local/api/v4/projects/481/packages/pypi/simple
 trusted-host = svleddar-gitlab.leddartech.local
 ```
 
-Use the package manager [pip](https://__token__:<your_personal_token>@svleddar-gitlab.leddartech.local/api/v4/projects/481/packages/pypi/simple) to install pioneer.common .
+Use the package manager [pip](https://pioneer:yK6RUkhUCNHg3e1yxGT4@svleddar-gitlab.leddartech.local/api/v4/projects/481/packages/pypi/simple/pioneer-common) to install pioneer.common .
 
 ```bash
-pip install pioneer-common --index-url https://__token__:<your_personal_token>@svleddar-gitlab.leddartech.local/api/v4/projects/481/packages/pypi/simple --trusted-host svleddar-gitlab.leddartech.local
+pip install pioneer-common
 ```
 
-Enable hot-reloading of packages during development.
+When developing, you can link the repository to your python site-packages and enable hot-reloading of the package
 ```bash
 python3 setup.py develop --user
 ```

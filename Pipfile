@@ -5,7 +5,7 @@ verify_ssl = true
 
 [[source]]
 name = "gitlab"
-url = "https://__token__:YysPpzD4V4qaY1y75Uv1@svleddar-gitlab.leddartech.local/api/v4/projects/487/packages/pypi/simple"
+url = "https://pioneer:yK6RUkhUCNHg3e1yxGT4@svleddar-gitlab.leddartech.local/api/v4/projects/487/packages/pypi/simple"
 verify_ssl = true
 
 [dev-packages]
