@@ -67,13 +67,14 @@ class CylindricalProjection():
             self.images_max_x[pos] = None
             self.masks[pos] = None
 
-    def project_pts(self, pts, mask_fov=False, output_mask=False):
+    def project_pts(self, pts, mask_fov=False, output_mask=False, margin=0):
         ''' project 3D in the 2D cylindrical referiencial
 
             Args:
                 pts_3D: 3D point in the center camera referential (3xN)
                 mask_fov (optionnal): removes points outside the fov
                 output_mask (optionnal): if True, returns the mask applied to the points
+                margin (optionnal): margin (in pixels) outside the image unaffected by the fov mask
             Return:
                 2xN: 2D points in cylindrical image referential
                 mask (optionnal): returned if output_mask is True
@@ -92,10 +93,10 @@ class CylindricalProjection():
 
         mask = (pts[2,:] > 0)
         if mask_fov or output_mask:
-            mask = (azimut>-self.FOV_width/2) & \
-                   (azimut<self.FOV_width/2) & \
-                   (elevation>-self.FOV_height/2) & \
-                   (elevation<self.FOV_height/2)
+            mask = (azimut > -self.FOV_width/2 - margin/self.image_width*self.FOV_width) & \
+                   (azimut < self.FOV_width/2 + margin/self.image_width*self.FOV_width) & \
+                   (elevation > -self.FOV_height/2 - margin/self.image_height*self.FOV_height) & \
+                   (elevation < self.FOV_height/2 + margin/self.image_height*self.FOV_height)
         if mask_fov:
             pts = pts[mask]
 
