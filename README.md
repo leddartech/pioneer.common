@@ -18,7 +18,7 @@ Use the package manager [pip](https://pioneer:yK6RUkhUCNHg3e1yxGT4@svleddar-gitl
 pip install pioneer-common
 ```
 
-When developing, you can link the repository to your python site-packages and enable hot-reloading of the package
+When developing, you can link the repository to your python site-packages and enable hot-reloading of the package.
 ```bash
 python3 setup.py develop --user
 ```
