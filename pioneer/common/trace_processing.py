@@ -45,15 +45,21 @@ class RemoveStaticNoise(TraceProcessing):
 
 class Realign(TraceProcessing):
 
-    def __init__(self):
+    def __init__(self, target_time_base_delay=None):
         super(Realign, self).__init__(priority=TraceProcessingPriorities.Realign.value)
+        self.target_time_base_delay = target_time_base_delay
 
     def __call__(self, traces):
-        if type(traces['time_base_delays']) in [int, float, type(None)]:
+        if type(traces['time_base_delays']) in [int, float, type(None)] and self.target_time_base_delay is None:
             return traces
 
         offsets_nb_pts = -traces['time_base_delays'] / traces['distance_scaling']
         offsets_nb_pts -= offsets_nb_pts.min()
+
+        if self.target_time_base_delay is not None:
+            offset = (traces['time_base_delays'].max() - self.target_time_base_delay) / traces['distance_scaling']
+            if offset < 0:
+                offsets_nb_pts -= offset
 
         while offsets_nb_pts.max() > 0:
             ind = np.where(offsets_nb_pts//1==0.0)[0] #where offset between 0 and 1
