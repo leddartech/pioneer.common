@@ -1,5 +1,6 @@
 from pioneer.common.logging_manager import LoggingManager
 
+import numpy as np
 import os
 import skvideo
 import time
@@ -71,17 +72,9 @@ class VideoRecorder(object):
         if video_fps is not None:
             hz = video_fps
         else:
-            if datasource in synchronized.keys():
-                l = len(synchronized)
-                a = synchronized[l//2][datasource]
-                b = synchronized[l//2 + 1][datasource]
-                hz = 1e6/(b.timestamp-a.timestamp) #timestamps in us
-            else:
-                l = len(platform[datasource])
-                a = platform[datasource][l//2]
-                b = platform[datasource][l//2 + 1]
-                hz = 1e6/(b.timestamp-a.timestamp) #timestamps in us
-            
+            ts = platform[datasource].timestamps
+            hz = 1e6/np.mean(ts[1:] - ts[:-1])
+
             if hz < 1 or hz > 100:
                 hz_ = max(1, min(hz, 100)) #for the case units are wrong
                 warnings.warn(f"[For datasource {datasource}] Clipping video framerate to {hz_} fps (was {hz} fps)")
