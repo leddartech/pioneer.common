@@ -77,7 +77,7 @@ class VideoRecorder(object):
 
             if hz < 1 or hz > 100:
                 hz_ = max(1, min(hz, 100)) #for the case units are wrong
-                warnings.warn(f"[For datasource {datasource}] Clipping video framerate to {hz_} fps (was {hz} fps)")
+                LoggingManager.instance().warning(f"[For datasource {datasource}] Clipping video framerate to {hz_} fps (was {hz} fps)")
                 hz = hz_
 
         return VideoRecorder(cls.__create_key, hz, recordable, datasource)
