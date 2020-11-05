@@ -26,7 +26,9 @@ setuptools.setup(
         'scipy',
         'shapely',
         'sk-video',
-        'ruamel.std.zipfile'
+        'ruamel.std.zipfile',
+        'scikit-build',
+        'open3d==0.10'
     ],
     python_requires='>=3.6'
 )
