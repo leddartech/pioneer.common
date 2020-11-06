@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="pioneer_common", # Replace with your own username
-    version="0.3.0",
+    version="0.3.1",
     author="Leddartech",
     description="Pioneer team common utilities",
     packages=[
