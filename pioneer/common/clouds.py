@@ -536,7 +536,7 @@ def to_echo_package(indices = np.array([], 'u4'), distances = np.array([], 'f4')
     default_fields = [('indices', 'u4')
                     , ('distances', 'f4')
                     , ('amplitudes', 'f4')
-                    , ('timestamps', 'u2')
+                    , ('timestamps', 'u8')
                     , ('flags', 'u2')]
 
     dtype = np.dtype(default_fields + [(key,additionnal_fields[key][1]) for key in additionnal_fields.keys()])
