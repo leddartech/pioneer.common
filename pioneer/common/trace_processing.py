@@ -195,6 +195,29 @@ class Desaturate(TraceProcessing):
         return traces
 
 
+class Decimate(TraceProcessing):
+    def __init__(self, factor:int=1):
+        super(Decimate, self).__init__(priority=TraceProcessingPriorities.Decimate.value)
+        self.factor = factor
+
+    def __call__(self, traces):
+        traces['data'] = traces['data'][:,::self.factor]
+        traces['distance_scaling'] *= self.factor
+        return traces
+
+
+class Binning(TraceProcessing):
+    def __init__(self, factor:int=1):
+        super(Binning, self).__init__(priority=TraceProcessingPriorities.Binning.value)
+        self.factor = factor
+
+    def __call__(self, traces):
+        min_len = int(np.floor(traces['data'].shape[-1]/self.factor))
+        traces['data'] = sum([traces['data'][:,i::self.factor][:,:min_len] for i in range(self.factor)])/self.factor
+        traces['time_base_delays'] += 0.5*(self.factor-1)*traces['distance_scaling']
+        traces['distance_scaling'] *= self.factor
+        return traces
+
 
 class TraceProcessingPriorities(Enum):
     Desaturate = 0
@@ -204,3 +227,5 @@ class TraceProcessingPriorities(Enum):
     ZeroBaseline = 4
     Clip = 5
     Smooth = 6
+    Binning = 7
+    Decimate = 8
