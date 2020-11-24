@@ -3,6 +3,13 @@ import setuptools
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
+def parse_requirements(filename):
+    """ load requirements from a pip requirements file """
+    lineiter = (line.strip() for line in open(filename))
+    return [line for line in lineiter if line and not line.startswith("#")]
+
+install_reqs = parse_requirements('requirements.txt')
+
 setuptools.setup(
     name="pioneer_common", # Replace with your own username
     version="0.4.0",
@@ -18,17 +25,6 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    install_requires=[
-        'numpy',
-        'matplotlib',
-        'future',
-        'transforms3d',
-        'scipy',
-        'shapely',
-        'sk-video',
-        'ruamel.std.zipfile',
-        'scikit-build',
-        'open3d==0.10'
-    ],
+    install_requires=install_reqs,
     python_requires='>=3.6'
 )
