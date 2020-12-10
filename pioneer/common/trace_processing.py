@@ -54,14 +54,14 @@ class Realign(TraceProcessing):
             return traces
 
         offsets_nb_pts = -traces['time_base_delays'] / traces['distance_scaling']
-        offsets_nb_pts -= offsets_nb_pts.min()
+        offsets_nb_pts -= np.min(offsets_nb_pts)
 
         if self.target_time_base_delay is not None:
-            offset = (traces['time_base_delays'].max() - self.target_time_base_delay) / traces['distance_scaling']
+            offset = (np.max(traces['time_base_delays']) - self.target_time_base_delay) / traces['distance_scaling']
             if offset < 0:
                 offsets_nb_pts -= offset
 
-        while offsets_nb_pts.max() > 0:
+        while np.max(offsets_nb_pts) > 0:
             ind = np.where(offsets_nb_pts//1==0.0)[0] #where offset between 0 and 1
             traces['data'][ind,:-1] = np.multiply(traces['data'][ind,:-1].T, 1-offsets_nb_pts[ind]).T + np.multiply(traces['data'][ind,1:].T, offsets_nb_pts[ind]).T
             traces['time_base_delays'][ind] += offsets_nb_pts[ind]*traces['distance_scaling']
