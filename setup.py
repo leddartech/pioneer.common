@@ -12,7 +12,7 @@ install_reqs = parse_requirements('requirements.txt')
 
 setuptools.setup(
     name="pioneer_common", # Replace with your own username
-    version="0.6.0",
+    version="1.0.0",
     author="Leddartech",
     description="Pioneer team common utilities",
     packages=[
