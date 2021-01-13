@@ -12,7 +12,7 @@ install_reqs = parse_requirements('requirements.txt')
 
 setuptools.setup(
     name="pioneer_common", # Replace with your own username
-    version="1.0.0",
+    version="1.1.0",
     author="Leddartech",
     description="Pioneer team common utilities",
     packages=[
@@ -26,5 +26,6 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     install_requires=install_reqs,
-    python_requires='>=3.6'
+    python_requires='>=3.6',
+    include_package_data=True
 )
