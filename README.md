@@ -4,15 +4,7 @@ pioneer.common is a python library regrouping all the utilities of the team Pion
 
 ## Installation
 
-Before installing, you should add to your pip.conf file the gitlab pypi server url to trust.
-
-```conf
-[global]
-extra-index-url = https://pioneer:yK6RUkhUCNHg3e1yxGT4@svleddar-gitlab.leddartech.local/api/v4/projects/481/packages/pypi/simple
-trusted-host = svleddar-gitlab.leddartech.local
-```
-
-Use the package manager [pip](https://pioneer:yK6RUkhUCNHg3e1yxGT4@svleddar-gitlab.leddartech.local/api/v4/projects/481/packages/pypi/simple/pioneer-common) to install pioneer.common .
+Use the package manager to install pioneer.common .
 
 ```bash
 pip install pioneer-common
