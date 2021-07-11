@@ -1,5 +1,6 @@
 import numpy as np
 
+NUMBERED_FMT = '{:08d}'
 NUMBERED_PICKLE_FMT = '{:08d}.pkl'
 NUMBERED_PNG_FMT = '{:08d}.png'
 NUMBERED_JPG_FMT = '{:08d}.jpg'

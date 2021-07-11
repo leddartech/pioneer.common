@@ -7,7 +7,7 @@ import cv2
 import io
 import numpy as np
 import pickle
-
+import os
 
 class ZipFileWriter(object):
 
@@ -69,6 +69,10 @@ class ZipFileWriter(object):
     def write_array_as_numbered_jpg(self, index, data):
         name = Constants.NUMBERED_JPG_FMT.format(index)
         return self.write_array_as_jpg(name, data)
+
+    def copy_file_as_numbered(self, index, filename):
+        name = Constants.NUMBERED_FMT.format(index) + os.path.splitext(filename)[1]
+        return self.archive.write(filename, name)
 
     def __enter__(self):
         return self
