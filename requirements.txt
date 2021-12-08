@@ -1,10 +1,14 @@
 numpy
 matplotlib
+opencv-python
 future
 transforms3d
 scipy
 shapely
 sk-video
+sklearn
 ruamel.std.zipfile
 scikit-build
 open3d==0.10
+tqdm
+utm
