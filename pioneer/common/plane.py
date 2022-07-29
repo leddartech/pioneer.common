@@ -1,7 +1,7 @@
-import numpy as np
-from open3d.open3d_pybind.geometry import (PointCloud, KDTreeSearchParamHybrid)
 from sklearn.linear_model import LinearRegression, RANSACRegressor
 
+import numpy as np
+import open3d as o3d
 '''
 Plane API
 a plane is defined by ax + by + cz + d = 0
@@ -38,13 +38,13 @@ def intersect_rays(points, directions, plane):
 
 
 def find_inliers(pts, distance_threshold, nb_points):
-    if isinstance(pts, PointCloud):
+    if isinstance(pts, o3d.geometry.PointCloud):
         pcd = pts
     else:
-        pcd = PointCloud()
-        pcd.points = Vector3dVector(pts)
+        pcd = o3d.geometry.PointCloud()
+        pcd.points = o3d.utility.Vector3dVector(pts)
 
-    _, ind = radius_outlier_removal(pcd, nb_points=nb_points,
+    _, ind = o3d.geometry.radius_outlier_removal(pcd, nb_points=nb_points,
         radius=distance_threshold)
     mask = np.zeros(pts.shape[0:1], dtype=np.bool)
     mask[ind] = True
@@ -315,9 +315,9 @@ def estimate_ground_plane(pts, residual_threshold=0.5, ransac_iter=1000,
         indices = indices[mask]
 
     # estimate the normals to filter most of the non ground plane points
-    pc = PointCloud()
-    pc.points = Vector3dVector(masked_pts)
-    estimate_normals(pc, search_param=KDTreeSearchParamHybrid(radius=1, max_nn=30))
+    pc = o3d.geometry.PointCloud()
+    pc.points = o3d.utility.Vector3dVector(masked_pts)
+    o3d.geometry.estimate_normals(pc, search_param=o3d.geometry.KDTreeSearchParamHybrid(radius=1, max_nn=30))
 
     normals = np.array(pc.normals)
     normal_mask = np.abs(np.dot(normals, up)) > normal_threshold

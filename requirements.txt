@@ -9,6 +9,6 @@ sk-video
 sklearn
 ruamel.std.zipfile
 scikit-build
-open3d==0.10
+open3d
 tqdm
 utm

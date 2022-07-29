@@ -1,20 +1,6 @@
-from pioneer.common.logging_manager import LoggingManager
+from pyquaternion import Quaternion
 
-try :
-    from open3d import *
-    from open3d.open3d_pybind.geometry import *
-    from open3d.open3d_pybind.utility import *
-    from open3d.open3d_pybind.registration import *
-except:
-    LoggingManager.instance().warning("please install open3d - pip3 install open3d")
-
-try :
-    from pyquaternion import Quaternion
-except:
-    LoggingManager.instance().warning("please install pyquaternion - pip3 install pyquaternion")
-
-import numpy as np
-from tqdm import tqdm
+import open3d as o3d
 import transforms3d as tf3d
 
 def quaternion_R(log_quaternion):
@@ -90,23 +76,23 @@ def icp(source,
         translation : matrix 1x3
         threshold_* : rayon of searching (in meters)
     """
-    source_ = PointCloud()
-    source_.points = Vector3dVector(source)
-    target_ = PointCloud()
-    target_.points = Vector3dVector(target)
+    source_ = o3d.geometry.PointCloud()
+    source_.points = o3d.utility.Vector3dVector(source)
+    target_ = o3d.geometry.PointCloud()
+    target_.points = o3d.utility.Vector3dVector(target)
 
     if method == "Point":
-        reg_p2p = registration_icp(source_, target_, max_correspondence_distance, init_matrix,
-                                        TransformationEstimationPointToPoint(),
-                                        ICPConvergenceCriteria(max_iteration = max_iteration)
+        reg_p2p = o3d.registration.registration_icp(source_, target_, max_correspondence_distance, init_matrix,
+                                        o3d.registration.TransformationEstimationPointToPoint(),
+                                        o3d.registration.ICPConvergenceCriteria(max_iteration = max_iteration)
                                     )
 
     elif method == "Plane":
-        source_.estimate_normals(search_param = KDTreeSearchParamHybrid(radius = 1.0, max_nn = 30))
-        target_.estimate_normals(search_param = KDTreeSearchParamHybrid(radius = 1.0, max_nn = 30))
-        reg_p2p = registration_icp(source_, target_, max_correspondence_distance, init_matrix,
-                                        TransformationEstimationPointToPlane(),
-                                        ICPConvergenceCriteria(max_iteration = max_iteration)
+        source_.estimate_normals(search_param = o3d.geometry.KDTreeSearchParamHybrid(radius = 1.0, max_nn = 30))
+        target_.estimate_normals(search_param = o3d.geometry.KDTreeSearchParamHybrid(radius = 1.0, max_nn = 30))
+        reg_p2p = o3d.registration.registration_icp(source_, target_, max_correspondence_distance, init_matrix,
+                                        o3d.registration.TransformationEstimationPointToPlane(),
+                                        o3d.registration.ICPConvergenceCriteria(max_iteration = max_iteration)
                                     )
     
     
