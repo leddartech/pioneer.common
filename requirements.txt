@@ -12,3 +12,4 @@ scikit-build
 open3d
 tqdm
 utm
+pyquaternion
